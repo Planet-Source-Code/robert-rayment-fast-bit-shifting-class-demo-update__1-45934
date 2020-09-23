@@ -1,0 +1,25 @@
+     1                                  [BITS 32]
+     2                                  
+     3 00000000 53                      push ebx
+     4                                  
+     5                                  ;mov ebx, dword [esp+08h] ; value
+     6                                  ;mov eax, dword [esp+0Ch] ; shift
+     7                                  
+     8 00000001 8B44240C                mov eax, dword [esp+0Ch] ; value
+     9 00000005 8B4C2410                mov ecx, dword [esp+10h] ; shift
+    10                                  
+    11 00000009 8B542414                mov edx, dword [esp+14h] ; hresult
+    12                                  
+    13                                  ;mov ebx, [ebx]
+    14                                  ;mov cl, AL;byte [eax]
+    15                                  ;rol ebx, cl
+    16                                  
+    17 0000000D D3C0                    rol eax, cl
+    18                                  
+    19                                  
+    20 0000000F 8902                    mov dword [edx], eax
+    21 00000011 31C0                    xor eax, eax
+    22                                  
+    23 00000013 5B                      pop ebx
+    24                                  
+    25 00000014 C21000                  ret 16

@@ -1,0 +1,22 @@
+Fast Bitshift Class Demo by Robert Rayment. 
+
+Thanks to David Fritts for highlighting this method on PSC (CodeId=45885).
+I've corrected the assembler and Ulli has recast it in his own inimitable
+style with some explanations.  In fact the method is the self-same as that
+used by Dmitry (CodeId=11830) a few years ago.  The main point is that, when 
+comparing fast EXEs, this bitshifting class is over 10 times quicker than 
+the standard VB way using functions of the form 2^p.  Those who are familiar 
+with VTables will understand the method, I'm still a bit hazy. 
+
+Basically on class initialization the raw machine code bytes, that carry out
+the bit-shifting, are stored in a memory block and the VTable that belongs to
+the class is changed to redirect the class functions towards the memory block 
+and carry out the machine code instructions.  On class-termination the VTable 
+is restored.  Depending who you read on the Web such methods are regarded as 
+controversial by some.
+
+However, the worst that can happen when experimenting is a message box 
+saying something like 'illegal operation' with the option to close the 
+project or debug it.  The asm files are included and you can compile 
+them into a bin file using my NASM assembler (CodeId=31442) or whatever,
+where the file List.txt shows the hex codes used in the class module.
